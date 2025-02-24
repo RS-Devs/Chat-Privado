@@ -1,15 +1,24 @@
 import express from "express";
 import { Server as SocketServer } from 'socket.io';
 import http from 'http';
-import cors from 'cors'; // Import the cors package
+import cors from 'cors';
 
 const app = express();
-app.use(cors()); // Use the cors middleware
+app.use(cors());
+
+// Serve static files with correct MIME type
+app.use(express.static('frontend/dist', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
+}));
 
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Use environment variable or default to localhost
+    origin: "https://your-frontend-url.com",
     methods: ["GET", "POST"]
   }
 });
