@@ -18,7 +18,7 @@ app.use(express.static('frontend/dist', {
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: "https://chat-privado-1.onrender.com",
+    origin: "https://chat-privado.onrender.com",
     methods: ["GET", "POST"]
   }
 });
