@@ -9,7 +9,7 @@ app.use(cors()); // Use the cors middleware
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: "http://localhost:5173", // Allow requests from this origin
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Use environment variable or default to localhost
     methods: ["GET", "POST"]
   }
 });
