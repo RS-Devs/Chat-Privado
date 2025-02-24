@@ -1,24 +1,15 @@
 import express from "express";
 import { Server as SocketServer } from 'socket.io';
 import http from 'http';
-import cors from 'cors';
+import cors from 'cors'; // Import the cors package
 
 const app = express();
-app.use(cors());
-
-// Serve static files with correct MIME type
-app.use(express.static('frontend/dist', {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.js')) {
-      res.setHeader('Content-Type', 'application/javascript');
-    }
-  }
-}));
+app.use(cors()); // Use the cors middleware
 
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: "https://chat-privado.onrender.com",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Use environment variable or default to localhost
     methods: ["GET", "POST"]
   }
 });
@@ -57,6 +48,7 @@ io.on('connection', socket => {
     io.sockets.emit('activeClients', activeClients);
   });
 });
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
-
+const PORT = process.env.PORT || 10000;
+server.listen(PORT, () => {
+  console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+});
