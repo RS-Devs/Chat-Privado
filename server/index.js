@@ -4,12 +4,15 @@ import http from 'http';
 import cors from 'cors'; // Import the cors package
 
 const app = express();
-app.use(cors()); // Use the cors middleware
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "https://chat-privado.onrender.com", // Update this to include your frontend URL
+  methods: ["GET", "POST"]
+}));
 
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",   // Use environment variable or default to localhost
+    origin: process.env.FRONTEND_URL || "https://chat-privado.onrender.com", // Update this to include your frontend URL
     methods: ["GET", "POST"]
   }
 });
