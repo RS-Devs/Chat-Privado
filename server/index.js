@@ -9,7 +9,7 @@ app.use(cors()); // Use the cors middleware
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "https://chat-privado.onrender.com",  // Use environment variable or default to localhost
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",   // Use environment variable or default to localhost
     methods: ["GET", "POST"]
   }
 });
