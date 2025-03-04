@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
-const socket = io('http://localhost:3000'); // Ensure the correct server URL and port
+const socket = io('https://backend-vmt5.onrender.com'); // Ensure the correct server URL and port
 
 function App() {
   const [message, setMessage] = useState('');
