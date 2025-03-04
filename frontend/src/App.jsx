@@ -54,7 +54,7 @@ function App() {
     <div className='h-screen bg-zinc-800 text-white flex items-center justify-center'>
       <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
         <div className="flex items-center justify-center ">
-          <img src="./public/assets/logo.png" alt="Logo" className="w-20 h-20 mr-2" />
+          <img src="/public/logo.png" alt="Logo" className="w-20 h-20 mr-2" />
         </div>
 
         <h1 className='text-2xl font-bold my-2'>Private Chat by RS-DEVS</h1>
